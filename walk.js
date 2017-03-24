@@ -2,7 +2,7 @@
 var teamNameInput = document.getElementById("teamInput");
 var donationAmountInput = document.getElementById("donateInput");
 
-//Button Variables and event  Listeners
+//Button Variables and event Listeners
 var clearBtn = document.getElementById("clearBtn");
 clearBtn.addEventListener("click", cleaForm);
 // console.log(clearBtn);
@@ -10,6 +10,7 @@ clearBtn.addEventListener("click", cleaForm);
 var donateBtn = document.getElementById("donateBtn");
 donateBtn.addEventListener("click", submitForm);
 
+//Button functions (clear button)
 function cleaForm (){
 	teamNameInput.value = "";
 	donationAmountInput.value = ""; 
@@ -24,8 +25,3 @@ function submitForm () {
 					"donation" : donorAmount,
 					}
 }
-
-// var WalkAThon = (function () {
-
-
-// });
