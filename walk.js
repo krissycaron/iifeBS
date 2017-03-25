@@ -8,8 +8,9 @@ var table = document.getElementById("tableList");
 var clearBtn = document.getElementById("clearBtn");
 clearBtn.addEventListener("click", cleaForm);
 
-// var donateBtn = document.getElementById("donateBtn");
-// donateBtn.addEventListener("click", submitForm);
+
+var donateBtn = document.getElementById("donateBtn");
+donateBtn.addEventListener("click", submitForm);
 
 //Button functions (clear button)
 function cleaForm (){
@@ -18,18 +19,18 @@ function cleaForm (){
 }
 
 // get data from form and add donor object to donor list array
-// function submitForm () {
-// 	var teamName = teamNameInput.value;
-// 	var donorAmount = donationAmountInput.value;
-// 	cleaForm();
+function submitForm () {
+	var teamName = teamNameInput.value;
+	var donorAmount = donationAmountInput.value;
+	cleaForm();
 
-// 	var newDonor = {"name": teamName, 
-// 					"donation" : donorAmount,
-// 					}
+	var newDonor = {"name": teamName, 
+					"donation" : donorAmount,
+					}
 
-// 	var tableInput = WalkAthon.getdonorArray();
-// 	displayTable();
-// }
+	var tableInput = WalkAthon.getdonorArray();
+	displayTable(tableInput);
+}
 
 function displayTable (){
 	table.innerHTML = "";
@@ -42,13 +43,19 @@ function displayTable (){
     	</tr>`;
 	table.insertBefore(displayTable);
 
+	//"tbody" element to hold table 
+	var tblBody = document.createElement("tbody");
+	 table.appendChild(tblBody);
 
+	//loop through the data from the form to add a new line in table.
+	for (i=0; 1<teamsAdded.length; i++){
+		var addDonorRow = document.createElement("td");
+		addDonorRow.innerHTML = 
+			`<td>${teamsAdded[i].name}</td>
+			<td>${teamsAdded[i].pledge}</td>`
+		tblBody.appendChild(addDonorRow);
 
+	};
 }
-
-
-// submitForm();
-displayTable();
-
 
 
