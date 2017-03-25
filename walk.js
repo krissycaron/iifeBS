@@ -1,47 +1,53 @@
 //variables to hold user input.
 var teamNameInput = document.getElementById("teamInput");
-var donationAmountInput = document.getElementById("donateInput");
+var donationAmountInput = document.getElementById("donationAmount");
+// var donationType = document.getElement("");
+var form = document.getElementById("signUpForm");
 
-var table = document.getElementById("tableList");
 
 //Button Variables and event Listeners
-var clearBtn = document.getElementById("clearBtn");
-clearBtn.addEventListener("click", cleaForm);
-
-
 var donateBtn = document.getElementById("donateBtn");
 donateBtn.addEventListener("click", submitForm);
 
+var clearBtn = document.getElementById("clearBtn");
+clearBtn.addEventListener("click", clearForm);
+
+var table = document.getElementById("donorTable");
+
 //Button functions (clear button)
-function cleaForm (){
+function clearForm (){
 	teamNameInput.value = "";
-	donationAmountInput.value = ""; 
+	donationAmountInput.value = "";
 }
 
 // get data from form and add donor object to donor list array
 function submitForm () {
 	var teamName = teamNameInput.value;
 	var donorAmount = donationAmountInput.value;
-	cleaForm();
+	var donationType = form.elements["donationType"].value;
+	clearForm();
 
 	var newDonor = {"name": teamName, 
 					"donation" : donorAmount,
+					"pledge_type": form
 					}
 
 	var tableInput = WalkAthon.getdonorArray();
 	displayTable(tableInput);
 }
 
-function displayTable (){
+function displayTable (list){
+	console.log("list", list.length);
 	table.innerHTML = "";
 
 	var tableColumnNames = document.createElement("td");
 	tableColumnNames.innerHTML = 
 		`<tr>
 	        <th scope="col">Team Name</th>
-	        <th scope="col">Pleadge</th>
+	        <th scope="col">Pledge</th>
+	        <th scope="col">Pledge-Type</th>
     	</tr>`;
-	table.insertBefore(displayTable);
+	table.appendChild(tableColumnNames);
 
 	//"tbody" element to hold table 
 	var tblBody = document.createElement("tbody");
@@ -52,7 +58,8 @@ function displayTable (){
 		var addDonorRow = document.createElement("td");
 		addDonorRow.innerHTML = 
 			`<td>${teamsAdded[i].name}</td>
-			<td>${teamsAdded[i].pledge}</td>`
+			<td>${teamsAdded[i].pledge}</td>
+			<td>${teamsAdded[i].pledge_type}</td>`
 		tblBody.appendChild(addDonorRow);
 
 	};
