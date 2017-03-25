@@ -6,10 +6,10 @@ var radios = document.getElementsByClassName("radioBtn");
 
 
 var donateBtn = document.getElementById("donateBtn");
-// donateBtn.addEventListener("click", submitForm);
+donateBtn.addEventListener("click", submitForm);
 
 var clearBtn = document.getElementById("clearBtn");
-// clearBtn.addEventListener("click", clearForm);
+clearBtn.addEventListener("click", clearForm);
 
 var table = document.getElementById("donorTable");
 
@@ -18,7 +18,6 @@ function clearForm (){
 	donationAmountInput.value = "";
 	radios.value = "";
 }
-console.log(WalkAThon);
 
 // get data from form and add donor object to donor list array
 function submitForm () {
@@ -43,6 +42,7 @@ function submitForm () {
 	var tableInput = WalkAThon.getdonorArray();
 	displayTable(tableInput);
 }
+console.log(WalkAThon);
 
 function displayTable (list){
 	console.log("list", list.length);
