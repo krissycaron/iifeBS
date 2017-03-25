@@ -3,7 +3,9 @@ var teamNameInput = document.getElementById("teamInput");
 var donationAmountInput = document.getElementById("donationAmount");
 var form = document.getElementById("signUpForm");
 var radios = document.getElementsByClassName("radioBtn");
-
+var lumpSum = document.getElementById("donateLumpSum");
+var laps	= document.getElementById("donatePerLap");
+var radioChosen;
 
 var donateBtn = document.getElementById("donateBtn");
 donateBtn.addEventListener("click", submitForm);
@@ -16,59 +18,53 @@ var table = document.getElementById("donorTable");
 function clearForm (){
 	teamNameInput.value = "";
 	donationAmountInput.value = "";
-	radios.value = "";
+	// radios.value = "unchecked";
 }
 
 // get data from form and add donor object to donor list array
 function submitForm () {
 	var teamName = teamNameInput.value;
 	var donorAmount = donationAmountInput.value;
-	var donationType = radios;
-	// if (lumpSum.checked === true){
 	
-	// } else if (laps.checked === true) {
+	if (lumpSum.checked === true){
+		var newDonor = {"name": teamName, 
+					"donation" : donorAmount,
+					"pledge_type": "lump sum"
+					}
+		WalkAThon.addDonor(newDonor);
+		displayTable();
+	} else if (laps.checked === true) {
+		var newDonor = {"name": teamName, 
+					"donation" : donorAmount,
+					"pledge_type": "per lap"
+					}
+		WalkAThon.addDonor(newDonor);
+		displayTable();
+	} else {
+		alert("Please check a donation type");
+	}
+}
 
-	// } else {
-	// 	alert("Please check a doantion amount");
-	// }
+
+function displayTable (){
+	table.innerHTML = "";
 	clearForm();
 
-	var newDonor = {"name": teamName, 
-					"donation" : donorAmount,
-					"pledge_type": donationType
-					}
-	WalkAThon.addDonor(newDonor);
-
-	var tableInput = WalkAThon.getdonorArray();
-	displayTable(tableInput);
-}
-console.log(WalkAThon);
-
-function displayTable (list){
-	console.log("list", list.length);
-	table.innerHTML = "";
-
-	var tableColumnNames = document.createElement("td");
+	var tableColumnNames = document.createElement("tr");
 	tableColumnNames.innerHTML = 
-		`<tr>
-	        <th scope="col">Team Name</th>
-	        <th scope="col">Pledge</th>
-	        <th scope="col">Pledge Type</th>
-    	</tr>`;
+		`<th scope="col">Name </th>` + 
+	    `<th scope="col">Pledge Amount </th>` +
+	   	`<th scope="col">Pledge Type </th>`;
 	table.appendChild(tableColumnNames);
-
-	//"tbody" element to hold table 
-	var tblBody = document.createElement("tbody");
-	 table.appendChild(tblBody);
-
-	//loop through the data from the form to add a new line in table.
-	for (i=0; 1<teamsAdded.length; i++){
-		var addDonorRow = document.createElement("td");
+	
+	var tableInput = WalkAThon.getDonor();
+	for (var i=0; i<tableInput.length; i++){
+		var addDonorRow = document.createElement("tr");
 		addDonorRow.innerHTML = 
-			`<td>${teamsAdded[i].name}</td>
-			<td>${teamsAdded[i].pledge}</td>
-			<td>${teamsAdded[i].pledge_type}</td>`
-		tblBody.appendChild(addDonorRow);
+			`<td>${tableInput[i].name}</td>
+			<td>${tableInput[i].donation}</td>
+			<td>${tableInput[i].pledge_type}</td>`
+		table.appendChild(addDonorRow);
+	}
 
-	};
-}
+};

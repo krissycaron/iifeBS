@@ -7,6 +7,7 @@ var WalkAThon = (function(donor) {
 
     donor.addDonor = function(newDonor){
         donorArray.push(newDonor);
+        console.log(donorArray);
     };
 
     donor.getDonor = function (newDonor){

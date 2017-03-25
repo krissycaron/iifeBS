@@ -42,6 +42,7 @@ function submitForm () {
 	var tableInput = WalkAThon.getdonorArray();
 	displayTable(tableInput);
 }
+console.log(WalkAThon);
 
 function displayTable (list){
 	console.log("list", list.length);
@@ -71,10 +72,3 @@ function displayTable (list){
 
 	};
 }
-
-
-
-
-
-
-
