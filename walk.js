@@ -3,7 +3,9 @@ var teamNameInput = document.getElementById("teamInput");
 var donationAmountInput = document.getElementById("donationAmount");
 // var donationType = document.getElement("");
 var form = document.getElementById("signUpForm");
-
+// var lumpSum = document.getElementById("donateLumpSum");
+// var laps = document.getElementById("donatePerLap");
+var radios = document.getElementsByClassName("radioBtn");
 
 //Button Variables and event Listeners
 var donateBtn = document.getElementById("donateBtn");
@@ -24,15 +26,23 @@ function clearForm (){
 function submitForm () {
 	var teamName = teamNameInput.value;
 	var donorAmount = donationAmountInput.value;
-	var donationType = form.elements["donationType"].value;
-	clearForm();
+	var donationType = radios;
+	// if (lumpSum.checked === true){
+	
+	// } else if (laps.checked === true) {
+
+	// } else {
+	// 	alert("Please check a doantion amount");
+	// }
 
 	var newDonor = {"name": teamName, 
 					"donation" : donorAmount,
-					"pledge_type": form
+					// "pledge_type": form
 					}
+	WalkAThon.addDonor(newDonor);
 
-	var tableInput = WalkAthon.getdonorArray();
+	var tableInput = WalkAThon.getdonorArray();
+	clearForm();
 	displayTable(tableInput);
 }
 
@@ -45,7 +55,7 @@ function displayTable (list){
 		`<tr>
 	        <th scope="col">Team Name</th>
 	        <th scope="col">Pledge</th>
-	        <th scope="col">Pledge-Type</th>
+	        <th scope="col">Pledge Type</th>
     	</tr>`;
 	table.appendChild(tableColumnNames);
 
