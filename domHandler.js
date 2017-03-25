@@ -1,12 +1,10 @@
 //variables to hold user input.
 var teamNameInput = document.getElementById("teamInput");
 var donationAmountInput = document.getElementById("donationAmount");
-// var donationType = document.getElement("");
 var form = document.getElementById("signUpForm");
-var lumpSum = document.getElementById("donateLumpSum");
-var laps = document.getElementById("donatePerLap");
+var radios = document.getElementsByClassName("radioBtn");
 
-//Button Variables and event Listeners
+
 var donateBtn = document.getElementById("donateBtn");
 donateBtn.addEventListener("click", submitForm);
 
@@ -15,35 +13,33 @@ clearBtn.addEventListener("click", clearForm);
 
 var table = document.getElementById("donorTable");
 
-//Button functions (clear button)
 function clearForm (){
 	teamNameInput.value = "";
 	donationAmountInput.value = "";
+	radios.value = "";
 }
 
 // get data from form and add donor object to donor list array
 function submitForm () {
 	var teamName = teamNameInput.value;
 	var donorAmount = donationAmountInput.value;
-	var donationType = form.elements 
-	if (lumpSum.checked === true){
-		newDonor.innerHTML
-	} else if (laps.checked === true) {
+	var donationType = radios;
+	// if (lumpSum.checked === true){
+	
+	// } else if (laps.checked === true) {
 
-	} else {
-		alert("Please check a doantion amount");
-	}
-
-	// ["donationType"].value;
+	// } else {
+	// 	alert("Please check a doantion amount");
+	// }
+	clearForm();
 
 	var newDonor = {"name": teamName, 
 					"donation" : donorAmount,
-					// "pledge_type": form
+					"pledge_type": donationType
 					}
 	WalkAThon.addDonor(newDonor);
 
 	var tableInput = WalkAThon.getdonorArray();
-	clearForm();
 	displayTable(tableInput);
 }
 
@@ -75,3 +71,10 @@ function displayTable (list){
 
 	};
 }
+
+
+
+
+
+
+
